@@ -82,7 +82,7 @@ const boardFindPoint = (board, x, y) => {
 
     // && - логический оператор "и"
     // инфа по логическим операторам
-    // https://learn.javascript.ru/logical-ops
+    // https://learn.javascript.ru/logical-operators
 
     return board.points.find((point) => point.x === x && point.y === y);
 };
