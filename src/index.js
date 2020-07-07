@@ -2,16 +2,19 @@
 // https://www.codingame.com/multiplayer/bot-programming/tic-tac-toe
 
 const pointConstructor = (x, y, status = 0) => {
+    // status: 0 - empty, 1 - me, 2 - opponent
     return {
         x: x,
         y: y,
         status: status,
+        priority: 0,
     };
 };
 
 const pointAction = (point) => {
     point.status = 1;
-    console.log(`${point.x} ${point.y}`);
+    // console.log(`${point.x} ${point.y}`);
+    console.log(point.x + " " + point.y);
 };
 
 const pointIsEmpty = (point) => {
@@ -67,6 +70,7 @@ const boardUpdate = (board, input) => {
     if (point !== undefined) {
         point.status = 2;
     }
+    // ... set prioritets
 };
 
 const readAndParsePointLine = () => {
@@ -88,6 +92,11 @@ const inputConstructor = () => {
     };
 };
 
+const sortPoints = (point1, point2) => {
+    // сортирует по убыванию приоритета
+    return point2.priority - point1.priority;
+}
+
 const board = boardConstructor();
 
 while (true) {
@@ -95,7 +104,9 @@ while (true) {
 
     boardUpdate(board, input);
 
-    const point = board.points.filter(pointIsEmpty)[0];
+    // ...
+
+    const point = board.points.sort(sortPoints)[0];
 
     pointAction(point);
 }
