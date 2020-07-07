@@ -153,12 +153,13 @@ const sortPoints = (point1, point2) => {
     return point2.priority - point1.priority;
 }
 
+// создаем поле
 const board = boardConstructor();
 
 // информация о циклах
 // https://learn.javascript.ru/while-for
 
-while (true) { // код  в этих скобках будит выполняться каждый ход
+while (true) { // код  в этих скобках будет выполняться каждый ход
     const input = inputConstructor();
 
     // обновляем поле
