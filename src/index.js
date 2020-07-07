@@ -132,7 +132,7 @@ const inputConstructor = () => {
     // тут будем хранить набор координат путых ячеек
     const validLines = [];
 
-    // цикл сохраняющий координаты пучтых ячеек
+    // цикл сохраняющий координаты пустых ячеек
     for (let i = 0; i < validActionCount; i++) {
         // получаем координаты пустой ячейки
         const line = readAndParsePointLine();
@@ -169,6 +169,9 @@ while (true) { // код  в этих скобках будет выполнят
 
     // массив ячеек рассортированные по убыванию приоритета
     // в начале массива будут самые приоритетные
+    // инфа по функции sort
+    // https://learn.javascript.ru/array-methods#sort-fn
+    // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
     const points = board.points.sort(sortPoints);
 
     // берем самую приоритетную ячейку
