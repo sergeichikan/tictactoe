@@ -160,6 +160,8 @@ const board = boardConstructor();
 // https://learn.javascript.ru/while-for
 
 while (true) { // код  в этих скобках будет выполняться каждый ход
+
+    // получаем инфу о текущем ходе
     const input = inputConstructor();
 
     // обновляем поле
