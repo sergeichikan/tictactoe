@@ -12,6 +12,8 @@ type Status = 0 | 1 | 2; // 0 - empty, 1 - me, 2 - opponent
 // 1 0
 // ...
 
+declare const readline: () => string;
+
 const readAndParsePointLine = (): number[] => {
     return readline().split(" ").map((str: string) => parseInt(str));
 };
