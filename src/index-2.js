@@ -1,12 +1,12 @@
 // https://www.codingame.com/multiplayer/bot-programming
 // https://www.codingame.com/multiplayer/bot-programming/tic-tac-toe
 
-const pointConstructor = (x, y, status = 0) => {
+const pointConstructor = (x, y) => {
     // функция возвращает обьект описывающий одну ячейку
     return {
         x: x, // номер строки
         y: y, // номер столбца
-        status: status, // 0 - пустая, 1 - занята мной, 2 - занята врагом
+        status: 0, // 0 - пустая, 1 - занята мной, 2 - занята врагом
 
         // приоритет ячейки состоящий из трех видов приоритета
         priority: {
@@ -36,15 +36,15 @@ const boardConstructor = () => {
     // нумерация строк и столбцов начинается с 0
 
     // создаем ячейки
-    const p1 = pointConstructor(0, 0, 1);
+    const p1 = pointConstructor(0, 0);
     const p2 = pointConstructor(0, 1);
-    const p3 = pointConstructor(0, 2, 1);
+    const p3 = pointConstructor(0, 2);
     const p4 = pointConstructor(1, 0);
-    const p5 = pointConstructor(1, 1, 2);
+    const p5 = pointConstructor(1, 1);
     const p6 = pointConstructor(1, 2);
-    const p7 = pointConstructor(2, 0, 1);
+    const p7 = pointConstructor(2, 0);
     const p8 = pointConstructor(2, 1);
-    const p9 = pointConstructor(2, 2, 1);
+    const p9 = pointConstructor(2, 2);
 
     // расставляем приоритеты относительно расположения ячеек
     p1.priority.position = 1;
