@@ -237,7 +237,7 @@ const maxPriority = (points, getPriority) => {
     return sorted.filter((point) => getPriority(point) === maxPriority);
 };
 
-const getNextPoint = (points) => {
+const getNextPoints = (points) => {
     // points - массив всех ячеек
 
     // из всех ячеек отбираем ячейки с самым большим "me" приоритетом
@@ -247,11 +247,7 @@ const getNextPoint = (points) => {
     const opponent = maxPriority(me, (point) => point.priority.opponent);
 
     // из них отбираем ячейки с самым большим "position" приоритетом
-    const position = maxPriority(opponent, (point) => point.priority.position);
-
-    // из полученного массива ячеек
-    // возвращаем первую попавшуюся ячейку
-    return position[0];
+    return maxPriority(opponent, (point) => point.priority.position);
 };
 
 // создаем поле
@@ -268,8 +264,10 @@ while (true) { // код  в этих скобках будет выполнят
     // обновляем поле
     boardUpdate(board, input);
 
-    // берем самую приоритетную ячейку
-    const point = getNextPoint(board.points);
+    // берем самые приоритетные ячейки
+    const points = getNextPoints(board.points);
+
+    const point = points[0];
 
     // ходим на эту ячейку
     pointAction(point);
