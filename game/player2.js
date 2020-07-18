@@ -7,6 +7,12 @@
 //     i++;
 // };
 
+const getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+};
+
 const pointConstructor = (x, y) => {
     // функция возвращает обьект описывающий одну ячейку
     return {
@@ -120,17 +126,20 @@ const setPriorityOfPoints = (points) => {
     // массив ячеек на которые никто не походил
     const emptyPoints = points.filter((point) => point.status === 0);
 
-
     if (opponentPoints.length === 0) {
-        // в случае если нету вражеских ячеек
-        // для каждой пустой ячейки устанавливаем наш приоритет равный количеству наших ячеек
-        emptyPoints.forEach((point) => point.priority.me = myPoints.length);
+        emptyPoints.forEach((point) => {
+            if (myPoints.length > point.priority.me) {
+                point.priority.me = myPoints.length;
+            }
+        });
     } else {
         // в случае если есть вражеские ячейки
         if (myPoints.length === 0) {
-            // и если есть наших ячеек нет
-            // для каждой пустой ячейки устанавливаем вражеский приоритет равный количеству ячеек врага
-            emptyPoints.forEach((point) => point.priority.opponent = opponentPoints.length);
+            emptyPoints.forEach((point) => {
+                if (opponentPoints.length > point.priority.opponent) {
+                    point.priority.opponent = opponentPoints.length;
+                }
+            });
         }
     }
 };
@@ -183,15 +192,21 @@ const maxPriority = (points, getPriority) => {
 };
 
 const getNextPoints = (points) => {
-    // points - массив всех ячеек
 
-    // из всех ячеек отбираем ячейки с самым большим "me" приоритетом
+    const highMe = board.points.filter((point) => point.priority.me === 2);
+    if (highMe.length) {
+        return highMe;
+    }
+
+    const highOpponent = board.points.filter((point) => point.priority.opponent === 2);
+    if (highOpponent.length) {
+        return highOpponent;
+    }
+
     const me = maxPriority(points, (point) => point.priority.me);
 
-    // из них отбираем ячейки с самым большим "opponent" приоритетом
     const opponent = maxPriority(me, (point) => point.priority.opponent);
 
-    // из них отбираем ячейки с самым большим "position" приоритетом
     return maxPriority(opponent, (point) => point.priority.position);
 };
 
@@ -202,7 +217,9 @@ export const player2 = (input, action) => {
 
     const points = getNextPoints(board.points);
 
-    const point = points[0];
+    const ind = getRandomInt(0, points.length);
+
+    const point = points[ind];
 
     point.status = 1;
 
