@@ -10,7 +10,7 @@ export class Game {
         this.step = 0;
         this.end = false;
         this.win = 0;
-        this.nextPlayer = 2;
+        this.nextPlayer = 1;
     }
 
     isWin(id) {

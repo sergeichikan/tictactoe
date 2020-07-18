@@ -7,8 +7,6 @@
 //     i++;
 // };
 
-// smart bot
-
 const pointConstructor = (x, y) => {
     // функция возвращает обьект описывающий одну ячейку
     return {
