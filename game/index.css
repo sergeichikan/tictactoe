@@ -1,0 +1,24 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px 2px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
+    gap: 2px 2px;
+}
+
+.box {
+    border: 1px dotted black;
+}
+
+.player1 {
+    background-color: crimson;
+}
+
+.player2 {
+    background-color: cornflowerblue;
+}
